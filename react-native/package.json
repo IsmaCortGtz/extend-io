@@ -1,7 +1,7 @@
 {
   "name": "@extend-io/react-native",
   "version": "0.1.0",
-  "description": "A tiny js/ts library to create Extensions APIs in every platform",
+  "description": "A react-native wrapper for extend-io, providing a file-system implementation using native-universal-fs",
   "type": "module",
   "scripts": {
     "build": "tsc && rolldown -c",
@@ -14,18 +14,16 @@
   "author": "IsmaCortGtz",
   "license": "MIT",
   "dependencies": {
-    "@extend-io/core": "file:../core"
+    "@extend-io/core": "^0.1.1",
+    "native-universal-fs": "^0.2.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.21",
     "rolldown": "^1.0.0-beta.10",
     "typescript": "^5.8.3"
   },
-
-  "types": "./types/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "module": "./dist/esm/index.mjs",
   "require": "./dist/cjs/index.cjs",
   "main": "./dist/esm/index.mjs",
-  
   "files": ["dist"]
 }

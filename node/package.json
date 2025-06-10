@@ -14,7 +14,7 @@
   "author": "IsmaCortGtz",
   "license": "MIT",
   "dependencies": {
-    "@extend-io/core": "^0.1.0"
+    "@extend-io/core": "^0.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.15.21",
