@@ -1,6 +1,6 @@
 {
   "name": "@extend-io/browser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A browser wrapper for extend-io, providing a file-system implementation of the extend-io API and Cache API",
   "type": "module",
   "scripts": {
@@ -20,10 +20,10 @@
     "rolldown": "^1.0.0-beta.10",
     "typescript": "^5.8.3"
   },
-
   "types": "./dist/types/index.d.ts",
   "module": "./dist/esm/index.mjs",
   "main": "./dist/esm/index.mjs",
-  
-  "files": ["dist"]
+  "files": [
+    "dist"
+  ]
 }
