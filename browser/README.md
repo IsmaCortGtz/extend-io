@@ -1,9 +1,9 @@
-# @extend-io/core
+# @extend-io/browser
 
-[![npm version](https://img.shields.io/npm/v/@extend-io/core.svg)](https://www.npmjs.com/package/@extend-io/core)
+[![npm version](https://img.shields.io/npm/v/@extend-io/browser.svg)](https://www.npmjs.com/package/@extend-io/browser)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-A tiny `Javascript` and `Typescript` library to create actions based Extensions APIs in every platform.
+A tiny `Javascript` and `Typescript` wrapper of the [`@extend-io/core`](https://www.npmjs.com/package/@extend-io/core) library for the `Browser`.
 
 ## IMPORTANT
 
@@ -14,7 +14,6 @@ Read more in the [security](#security) section.
 ## Table of Content
 
 - [Installation](#installation)
-- [Platform specific wrappers](#platform-specific-wrappers)
 - [Usage](#usage)
 - [Security](#security)
 - [Documentation](#documentation)
@@ -24,36 +23,39 @@ Read more in the [security](#security) section.
 You can install this library with the following command.
 
 ```sh
-npm install @extend-io/core
+npm install @extend-io/browser
 ```
-
-***Note:*** *I recommend using one of the following platform specific wrappers. With `@extend-io/core` you need to implement the file-system API by yourself.*
-
-## Platform specific wrappers
-
-Using these wrappers, you don't need to install `@extend-io/core` and you don't need to care about `file-system` implementation, but the API and usage keep the same.
-
-- [`@extend-io/node`](https://www.npmjs.com/package/@extend-io/node)
-- [`@extend-io/browser`](https://www.npmjs.com/package/@extend-io/browser)
-- [`@extend-io/react-native`](https://www.npmjs.com/package/@extend-io/react-native)
 
 ## Usage
 
-The first step to use the library is create an instance of the `ExtendIO` class and pass a `file-system` implementation for your platform.
+This wrapper can only be used in browsers that support the `Cache API`. You can build your own `file-system` implementation using another API and [`@extend-io/core`](https://www.npmjs.com/package/@extend-io/core).
 
-With the `file-system` ready, we can create am instance of the `ExtendIO` class and start installing zip files.
+The first step to use the library is create an instance of the `ExtendIO` class and pass a `file-system` implementation for the `browser`.
+
+### Browser `file-system` implementation
+
+This library exports a `fileSystem` `async` function that returns an object with the `file-system` implementation. This function accepts a param that represent the cache name that `Cache API` will use to store files.
 
 ```js
-import { ExtendIO } from '@extend-io/core';
+import { ExtendIO, fileSystem } from '@extend-io/browser';
 
-// file-system for specific platform
-const fs = {...};
-const extensionsContainer = new ExtendIO(fs);
+// By default the param will be 'extendio-cache'
+const extensionsContainer = new ExtendIO(await fileSystem());
 
 // base64 of the zip extension without prefix:  data:application/zip;base64,...
 // uint8array of the zip extension
 const extensionZip = '...';
+await extensionsContainer.registerExtension(extensionZip)
+```
 
+Additionally, this library exports as default an instance of the `ExtendIO` class with the `fileSystem` using default param.
+
+```js
+import extensionsContainer from '@extend-io/browser';
+
+// base64 of the zip extension without prefix:  data:application/zip;base64,...
+// uint8array of the zip extension
+const extensionZip = '...';
 await extensionsContainer.registerExtension(extensionZip)
 ```
 
@@ -86,7 +88,7 @@ This object has a lot of methods to use, but usually you only need to care about
 - `value`: ***any***. The value of the extension, this could be any type (usually objects on functions).
 
 ```js
-import { Permissions } from '@extend-io/core';
+import { Permissions } from '@extend-io/browser';
 
 // Re-enable fetch api with a custom ID
 Permissions.setPermissions('permission.native.fetch', 'fetch', fetch);
