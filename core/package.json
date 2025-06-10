@@ -1,0 +1,37 @@
+{
+  "name": "@extend-io/core",
+  "version": "0.1.0",
+  "description": "A tiny js/ts library to create Extensions APIs in every platform",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && rolldown -c",
+    "clear": "rm -rf dist types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IsmaCortGtz/extend-io.git"
+  },
+  "author": "IsmaCortGtz",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jszip": "^3.4.0",
+    "@types/node": "^22.15.21",
+    "rolldown": "^1.0.0-beta.10",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  },
+  "types": "./dist/types/index.d.ts",
+  "module": "./dist/esm/index.mjs",
+  "require": "./dist/cjs/index.cjs",
+  "main": "./dist/esm/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
+    }
+  },
+  "files": ["dist"]
+}

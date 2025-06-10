@@ -1,0 +1,17 @@
+{
+  "uid": "778e5b41-716f-4976-bc45-274a490baab1",
+  "name": "ExtensionTest",
+  "version": [1, 0, 0],
+  "permissions": ["permission.native.fetch", "permission.native.console"],
+  "actions": {
+    "list": ["./src/constants.js", "./src/list.js"],
+    "send": ["./src/send.js"]
+  },
+  "assets": {
+    "icon": "./assets/icon.jpg"
+  },
+  "variables": {
+    "background": "#111111",
+    "foreground": "#DEDEDE"
+  }
+}

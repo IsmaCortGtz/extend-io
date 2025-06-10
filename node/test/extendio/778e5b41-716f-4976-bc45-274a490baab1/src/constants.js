@@ -1,0 +1,1 @@
+const PRUEBA_1 = 1001;

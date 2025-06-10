@@ -1,0 +1,29 @@
+{
+  "name": "@extend-io/node",
+  "version": "0.1.0",
+  "description": "A node wrapper for extend-io, providing a file-system implementation of the extend-io API and Node.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && rolldown -c",
+    "clear": "rm -rf dist types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IsmaCortGtz/extend-io.git"
+  },
+  "author": "IsmaCortGtz",
+  "license": "MIT",
+  "dependencies": {
+    "@extend-io/core": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "rolldown": "^1.0.0-beta.10",
+    "typescript": "^5.8.3"
+  },
+  "types": "./dist/types/index.d.ts",
+  "module": "./dist/esm/index.mjs",
+  "require": "./dist/cjs/index.cjs",
+  "main": "./dist/esm/index.mjs",
+  "files": ["dist"]
+}
