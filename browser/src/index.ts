@@ -1,13 +1,13 @@
 import writeFile from "./writeFile";
 import readFile from "./readFile";
 
-export async function fileSystem(cahceName: string = 'extendio-cache') {
+export function fileSystem(cahceName: string = 'extendio-cache') {
   const cacheAvailable = 'caches' in self;
   if (!cacheAvailable) {
     throw new Error("Caches API is not available in this environment.");
   }
 
-  const cache = await caches.open(cahceName);
+  const cache = caches.open(cahceName);
   return {
     /** MkDir no needed for cache in browser */
     mkDir: async (relativePath: string) => { },
@@ -20,4 +20,4 @@ export async function fileSystem(cahceName: string = 'extendio-cache') {
 
 import { ExtendIO } from "@extend-io/core";
 export * from '@extend-io/core';
-export default new ExtendIO(await fileSystem());
+export default new ExtendIO(fileSystem());

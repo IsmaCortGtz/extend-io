@@ -1,7 +1,7 @@
-export default async function readFile(cache: Cache, filePath: string, encode: 'utf8' | 'base64' | 'uint8array'): Promise<string | Uint8Array> {
+export default async function readFile(cache: Promise<Cache>, filePath: string, encode: 'utf8' | 'base64' | 'uint8array'): Promise<string | Uint8Array> {
   try {
     const file = (`/extendio-cache-file-system-url/${filePath}`).replace('//', '/');
-    const response = await cache.match(file);
+    const response = await (await cache).match(file);
     if (!response) {
       throw new Error(`File not found: ${filePath}`);
     }

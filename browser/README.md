@@ -15,6 +15,7 @@ Read more in the [security](#security) section.
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [CDN Usage](#cdn-usage)
 - [Security](#security)
 - [Documentation](#documentation)
 
@@ -34,13 +35,13 @@ The first step to use the library is create an instance of the `ExtendIO` class 
 
 ### Browser `file-system` implementation
 
-This library exports a `fileSystem` `async` function that returns an object with the `file-system` implementation. This function accepts a param that represent the cache name that `Cache API` will use to store files.
+This library exports a `fileSystem` function that returns an object with the `file-system` implementation. This function accepts a param that represent the cache name that `Cache API` will use to store files.
 
 ```js
 import { ExtendIO, fileSystem } from '@extend-io/browser';
 
 // By default the param will be 'extendio-cache'
-const extensionsContainer = new ExtendIO(await fileSystem());
+const extensionsContainer = new ExtendIO(fileSystem());
 
 // base64 of the zip extension without prefix:  data:application/zip;base64,...
 // uint8array of the zip extension
@@ -102,6 +103,43 @@ Permissions.setPermissions('permission.custom.example', 'example', {
 In code you can use it like:
 example.sum(1, 2); // 3
 */
+```
+
+## CDN Usage
+
+You can test the library using a CDN. In github and NPM will be a file under [`dist/iife/index.cdn.js`](./dist//iife//index.cdn.js) for CDN usage, you can use the CDN provider that you want.
+
+```html
+<!-- jsDelivr -->
+<script src="https://cdn.jsdelivr.net/npm/@extend-io/browser/dist/iife/index.cdn.js"></script>
+
+<!-- unpkg -->
+<script src="https://unpkg.com/@extend-io/browser/dist/iife/index.cdn.js"></script>
+```
+
+When CDN is used, exported values will be under `ExtendIO` name, and default export will be in `ExtendiIO.default`.
+
+```js
+// Re-enable fetch api with a custom ID
+ExtendIO.Permissions.setPermissions('permission.native.fetch', 'fetch', fetch);
+
+// Custom permission
+ExtendIO.Permissions.setPermissions('permission.custom.example', 'example', {
+  sum: (a, b) => a + b;
+});
+
+/*
+In code you can use it like:
+example.sum(1, 2); // 3
+*/
+
+// const extensionsContainer = ExtendIO.default;
+const extensionsContainer = new ExtendIO.ExtendIO(ExtendIO.fileSystem());
+
+// base64 of the zip extension without prefix:  data:application/zip;base64,...
+// uint8array of the zip extension
+const extensionZip = '...';
+await extensionsContainer.registerExtension(extensionZip);
 ```
 
 ## Security
